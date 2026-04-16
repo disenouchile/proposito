@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -254,7 +253,8 @@
   </div>
 
   <script>
-    const API_URL = 'https://profesorfaco.github.io/herramientas/final.json';
+    const API_URL = 'https://api.myjson.online/v1/records/9057c350-1e08-4f19-8c89-e653b04a17ae';
+    let myjson;
     let allProjects = [];
     let currentFilter = 'all';
 
@@ -280,8 +280,11 @@
         const response = await fetch(API_URL);
         if (!response.ok) throw new Error('Error al cargar los datos');
         
-        allProjects = await response.json();
+        myjson = await response.json();
         
+
+        allProjects = myjson.data;
+
         // Obtener código de la URL si existe
         const urlCode = getUrlParameter('code');
         if (urlCode) {
